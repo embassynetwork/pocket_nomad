@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import CardPart from './card_part'
 import CardHeader from './card_header'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import DetailPart from './detail_part'
 
 export default class LocationDetails extends Component {
   render() {
@@ -12,7 +14,9 @@ export default class LocationDetails extends Component {
           <Text style={styles.headerText}>location</Text>
         </CardHeader>
         <CardPart>
-          <Text>foobar</Text>
+          <DetailPart icon="location-on">
+            <Text>1665 Haight St, San Francisco{"\n"}CA 94117 USA</Text>
+          </DetailPart>
         </CardPart>
       </View>
     );

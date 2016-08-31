@@ -14,7 +14,7 @@ export default class CardPart extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 16,
     borderColor: '#DFE0E4',
     borderTopWidth: 1
   }
