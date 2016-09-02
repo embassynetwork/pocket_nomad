@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { colors } from '../styles/typography'
 
-export default class CardPart extends Component {
+export default class CardButtonFooter extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.children}
+        <Text style={styles.text}>
+          {this.props.children}
+        </Text>
       </View>
     );
   }
@@ -15,8 +17,13 @@ export default class CardPart extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     borderColor: colors.cardBorder,
-    borderTopWidth: 1
+    borderTopWidth: 1,
+    padding: 16,
+  },
+  text: {
+    textAlign: 'right',
+    color: '#666666',
+    fontWeight: '600',
   }
 });

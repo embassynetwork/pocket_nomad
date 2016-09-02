@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import Card from './card'
+import { colors } from '../styles/typography'
 
 export default class NotificationCard extends Component {
   render() {
@@ -33,6 +34,6 @@ const styles = StyleSheet.create({
   image: {
     width: 60,
     height: 60,
-    backgroundColor: '#660000'
+    backgroundColor: colors.cardBorder,
   }
 });

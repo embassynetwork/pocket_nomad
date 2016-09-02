@@ -4,6 +4,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import CardPart from './card_part'
 import EventPreview from './event_preview'
 import CardHeader from './card_header'
+import CardButtonFooter from './card_button_footer'
 
 export default class EventGroupPreview extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class EventGroupPreview extends Component {
         <CardPart>
           <EventPreview />
         </CardPart>
+        <CardButtonFooter>see all</CardButtonFooter>
       </View>
     );
   }
