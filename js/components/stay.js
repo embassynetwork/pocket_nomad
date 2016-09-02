@@ -5,6 +5,7 @@ import Header from './stay_header'
 import Card from './card'
 import EventGroupPreview from './event_group_preview'
 import LocationDetails from './location_details'
+import NotificationCard from './notification_card'
 
 export default class Stay extends Component {
   render() {
@@ -12,10 +13,11 @@ export default class Stay extends Component {
       <View style={styles.container}>
         <Header />
         <ScrollView style={styles.cardContainer}>
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
           <Card><EventGroupPreview /></Card>
           <Card><LocationDetails /></Card>
-          <Card />
-          <Card />
         </ScrollView>
       </View>
     );

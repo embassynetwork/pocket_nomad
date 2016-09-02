@@ -11,11 +11,14 @@ export default class LocationDetails extends Component {
     return (
       <View>
         <CardHeader>
-          <Text style={styles.headerText}>location</Text>
+          <Text style={styles.headerText}>location details</Text>
         </CardHeader>
         <CardPart>
-          <DetailPart icon="location-on">
+          <DetailPart style={styles.detailPart} icon="location-on">
             <Text>1665 Haight St, San Francisco{"\n"}CA 94117 USA</Text>
+          </DetailPart>
+          <DetailPart style={styles.detailPart} icon="wifi">
+            <Text>Network: Red Vic{"\n"}Password: modernomad</Text>
           </DetailPart>
         </CardPart>
       </View>
@@ -27,5 +30,8 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
     fontSize: 17
+  },
+  detailPart: {
+    marginBottom: 16
   }
 });
