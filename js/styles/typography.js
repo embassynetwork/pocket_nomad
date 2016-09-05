@@ -4,6 +4,10 @@ export const colors = {
   cardBorder: '#DFE0E4',
 }
 
+export const margins = {
+  cardPadding: 16
+}
+
 export const fonts = {
   baseFontSize: 15
 }

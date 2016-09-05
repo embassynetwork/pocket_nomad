@@ -1,10 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
+import { colors, fonts } from '../styles/typography'
 import FullWidthCard from './generic/full_width_card'
 import CardHeader from './generic/card_header'
 import CardPart from './generic/card_part'
-import { colors, fonts } from '../styles/typography'
+import ListCarouselItem from './generic/list_carousel_item'
+import ListCarouselItemSet from './generic/list_carousel_item_set'
+import OccupantPreview from './occupant_preview'
 
 export default class OccupantsCard extends Component {
   render() {
@@ -18,9 +21,20 @@ export default class OccupantsCard extends Component {
             your stay
           </Text>
         </CardHeader>
-        <CardPart>
-          <Text>hello world</Text>
-        </CardPart>
+        <ListCarouselItemSet>
+          <ListCarouselItem first={true}>
+            <OccupantPreview />
+          </ListCarouselItem>
+          <ListCarouselItem>
+            <OccupantPreview />
+          </ListCarouselItem>
+          <ListCarouselItem>
+            <OccupantPreview />
+          </ListCarouselItem>
+          <ListCarouselItem>
+            <OccupantPreview />
+          </ListCarouselItem>
+        </ListCarouselItemSet>        
       </FullWidthCard>
     );
   }
