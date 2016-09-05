@@ -18,9 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginTop: 0,
     marginBottom: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: colors.cardBorder,
     borderRadius: 2,
     minHeight: 20
