@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { colors } from '../styles/typography'
+import { colors } from '../../styles/typography'
 
-export default class Card extends Component {
+export default class FullWidthCard extends Component {
   render() {
     return (
       <View style={[styles.container, this.props.style]}>

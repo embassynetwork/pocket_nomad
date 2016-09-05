@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import CardPart from './card_part'
+import CardPart from './generic/card_part'
 import EventPreview from './event_preview'
-import CardHeader from './card_header'
-import CardButtonFooter from './card_button_footer'
+import CardHeader from './generic/card_header'
+import CardButtonFooter from './generic/card_button_footer'
 
 export default class EventGroupPreview extends Component {
   render() {

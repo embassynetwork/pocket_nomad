@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { colors } from '../styles/typography'
+import { colors } from '../../styles/typography'
 
 export default class CardPart extends Component {
   render() {

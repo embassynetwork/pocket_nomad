@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import CardPart from './card_part'
-import CardHeader from './card_header'
+import CardPart from './generic/card_part'
+import CardHeader from './generic/card_header'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DetailPart from './detail_part'
 
