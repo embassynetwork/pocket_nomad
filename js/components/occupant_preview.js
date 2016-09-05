@@ -11,7 +11,7 @@ export default class OccupantPreviw extends Component {
       <View style={styles.container}>
         <Image style={styles.image} source={{uri: imageUrl}} />
         <View style={styles.details}>
-          <Text style={styles.name}>Craig Ambrose</Text>
+          <Text style={styles.name}>{this.props.name}</Text>
           <Text style={styles.description} ellipsizeMode="tail" numberOfLines={1}>guest for 3 days</Text>
         </View>
       </View>

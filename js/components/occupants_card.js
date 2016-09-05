@@ -21,10 +21,13 @@ export default class OccupantsCard extends Component {
           </Text>
         </CardHeader>
         <ListCarousel>
-          <OccupantPreview />
-          <OccupantPreview />
-          <OccupantPreview />
-          <OccupantPreview />
+          <OccupantPreview id="1" name="Craig Ambrose" />
+          <OccupantPreview id="2" name="Tracey Ambrose" />
+          <OccupantPreview id="3" name="Jessy Schingler" />
+          <OccupantPreview id="4" name="Robbie Schingler" />
+          <OccupantPreview id="5" name="Anouk Ruhaak" />
+          <OccupantPreview id="6" name="Samy Andary" />
+          <OccupantPreview id="7" name="Daniel Gasperz" />
         </ListCarousel>
       </FullWidthCard>
     );
