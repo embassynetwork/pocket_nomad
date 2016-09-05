@@ -5,8 +5,7 @@ import { colors, fonts } from '../styles/typography'
 import FullWidthCard from './generic/full_width_card'
 import CardHeader from './generic/card_header'
 import CardPart from './generic/card_part'
-import ListCarouselItem from './generic/list_carousel_item'
-import ListCarouselItemSet from './generic/list_carousel_item_set'
+import ListCarousel from './generic/list_carousel'
 import OccupantPreview from './occupant_preview'
 
 export default class OccupantsCard extends Component {
@@ -21,20 +20,12 @@ export default class OccupantsCard extends Component {
             your stay
           </Text>
         </CardHeader>
-        <ListCarouselItemSet>
-          <ListCarouselItem first={true}>
-            <OccupantPreview />
-          </ListCarouselItem>
-          <ListCarouselItem>
-            <OccupantPreview />
-          </ListCarouselItem>
-          <ListCarouselItem>
-            <OccupantPreview />
-          </ListCarouselItem>
-          <ListCarouselItem>
-            <OccupantPreview />
-          </ListCarouselItem>
-        </ListCarouselItemSet>        
+        <ListCarousel>
+          <OccupantPreview />
+          <OccupantPreview />
+          <OccupantPreview />
+          <OccupantPreview />
+        </ListCarousel>
       </FullWidthCard>
     );
   }
