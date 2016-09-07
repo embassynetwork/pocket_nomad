@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import CardPart from './generic/card_part'
 import CardHeader from './generic/card_header'
@@ -7,6 +7,24 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import DetailPart from './detail_part'
 
 export default class LocationDetails extends Component {
+  static propTypes = {
+    details: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.isRequired,
+      icon: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired
+  }
+
+  renderDetailParts() {
+    return this.props.details.map((detail) => {
+      return (
+        <DetailPart key={detail.id} style={styles.detailPart} icon={detail.icon}>
+          <Text>{detail.text}</Text>
+        </DetailPart>
+      )
+    })
+  }
+
   render() {
     return (
       <View>
@@ -14,12 +32,7 @@ export default class LocationDetails extends Component {
           <Text style={styles.headerText}>location details</Text>
         </CardHeader>
         <CardPart>
-          <DetailPart style={styles.detailPart} icon="location-on">
-            <Text>1665 Haight St, San Francisco{"\n"}CA 94117 USA</Text>
-          </DetailPart>
-          <DetailPart style={styles.detailPart} icon="wifi">
-            <Text>Network: Red Vic{"\n"}Password: modernomad</Text>
-          </DetailPart>
+          {this.renderDetailParts()}
         </CardPart>
       </View>
     );

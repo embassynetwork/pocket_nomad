@@ -27,6 +27,10 @@ export default class Stay extends Component {
         {id: 7, name: "Samy Andary", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
         {id: 8, name: "Daniel Gasperz", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
         {id: 9, name: "Guesty McGuestalot", status: "guest", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
+      ],
+      locationDetails: [
+        {id: "address", icon: 'location-on', text: "1665 Haight St, San Francisco\nCA 94117 USA"},
+        {id: "wifi", icon: 'wifi', text: "Network: Red Vic\nPassword: modernomad"}
       ]
     }
 
@@ -45,7 +49,7 @@ export default class Stay extends Component {
           <NotificationCard />
           <Card><EventGroupPreview events={stay.events} /></Card>
           <OccupantsCard occupants={stay.occupants} />
-          <Card><LocationDetails /></Card>
+          <Card><LocationDetails details={stay.locationDetails} /></Card>
         </View>
       </ParallaxView>
 
