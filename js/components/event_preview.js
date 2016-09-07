@@ -1,19 +1,28 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { colors } from '../styles/typography'
 
 export default class EventPreview extends Component {
+  static propTypes = {
+    event: PropTypes.shape({
+      id: PropTypes.isRequired,
+      name: PropTypes.string.isRequired,
+      startTime: PropTypes.isRequired,
+      imageUrl: PropTypes.string
+    }).isRequired
+  }
+
   render() {
-    const imageUrl = "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"
+    const event = this.props.event
 
     return (
       <View style={styles.container}>
         <View style={styles.details}>
-          <Text style={styles.title}>Bloom Network Launch</Text>
-          <Text style={styles.timeAndDate}>Friday, 7pm</Text>
+          <Text style={styles.title} ellipsizeMode="tail" numberOfLines={1}>{event.name}</Text>
+          <Text style={styles.timeAndDate}>{event.startTime}</Text>
         </View>
-        <Image style={styles.image} source={{uri: imageUrl}} />
+        <Image style={styles.image} source={{uri: event.imageUrl}} />
       </View>
     );
   }
@@ -26,6 +35,7 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: 'column',
+    flex: 1,
   },
   title: {
     fontWeight: "500",
