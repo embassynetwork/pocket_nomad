@@ -1,14 +1,14 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { colors, fonts } from '../styles/typography'
-import FullWidthCard from './generic/full_width_card'
-import CardHeader from './generic/card_header'
-import CardPart from './generic/card_part'
-import ListCarousel from './generic/list_carousel'
+import { colors, fonts } from '../../styles/typography'
+import FullWidthCard from '../generic/full_width_card'
+import CardHeader from '../generic/card_header'
+import CardPart from '../generic/card_part'
+import ListCarousel from '../generic/list_carousel'
 import OccupantPreview from './occupant_preview'
 import { forEach, map } from 'lodash'
-import { pluralize, nodesToSentence } from '../utilities'
+import { pluralize, nodesToSentence } from '../../utilities'
 
 const Num = (props) => <Text style={styles.num}>{props.children}</Text>
 

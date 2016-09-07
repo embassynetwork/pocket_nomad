@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import Card from './generic/card'
-import { colors } from '../styles/typography'
+import Card from '../generic/card'
+import { colors } from '../../styles/typography'
 
 export default class NotificationCard extends Component {
   render() {

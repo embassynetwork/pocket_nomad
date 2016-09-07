@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { colors } from '../styles/typography'
+import { colors } from '../../styles/typography'
 
 export default class EventPreview extends Component {
   static propTypes = {

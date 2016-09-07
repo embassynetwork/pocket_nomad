@@ -1,10 +1,10 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import CardPart from './generic/card_part'
+import CardPart from '../generic/card_part'
 import EventPreview from './event_preview'
-import CardHeader from './generic/card_header'
-import CardButtonFooter from './generic/card_button_footer'
+import CardHeader from '../generic/card_header'
+import CardButtonFooter from '../generic/card_button_footer'
 
 export default class EventGroupPreview extends Component {
   static propTypes = {

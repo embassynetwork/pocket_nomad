@@ -1,8 +1,8 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { colors } from '../styles/typography'
-import { pluralize } from '../utilities'
+import { colors } from '../../styles/typography'
+import { pluralize } from '../../utilities'
 
 export default class OccupantPreviw extends Component {
   static propTypes = {
