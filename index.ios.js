@@ -1,5 +1,5 @@
 /**
- * Sample React Native App
+ * PocketNomad for iOS
  * https://github.com/facebook/react-native
  * @flow
  */

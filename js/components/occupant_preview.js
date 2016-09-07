@@ -1,18 +1,45 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { colors } from '../styles/typography'
+import { pluralize } from '../utilities'
 
 export default class OccupantPreviw extends Component {
+  static propTypes = {
+    occupant: PropTypes.shape({
+      id: PropTypes.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      duration: PropTypes.number,
+      avatarUrl: PropTypes.string
+    }).isRequired
+  }
+
+  description() {
+    const occupant = this.props.occupant
+
+    if (occupant.status == 'resident') {
+      return occupant.status
+    } else {
+      if (occupant.duration) {
+        return `${occupant.status} for ${occupant.duration} ${pluralize('day', occupant.duration)}`
+      } else {
+        return occupant.status
+      }
+    }
+  }
+
   render() {
-    const imageUrl = "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"
+    const occupant = this.props.occupant
 
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={{uri: imageUrl}} />
+        <Image style={styles.image} source={{uri: occupant.avatarUrl}} />
         <View style={styles.details}>
-          <Text style={styles.name}>{this.props.name}</Text>
-          <Text style={styles.description} ellipsizeMode="tail" numberOfLines={1}>guest for 3 days</Text>
+          <Text style={styles.name}>{occupant.name}</Text>
+          <Text style={styles.description} ellipsizeMode="tail" numberOfLines={1}>
+            {this.description()}
+          </Text>
         </View>
       </View>
     );

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { colors, fonts } from '../styles/typography'
 import FullWidthCard from './generic/full_width_card'
@@ -7,27 +7,60 @@ import CardHeader from './generic/card_header'
 import CardPart from './generic/card_part'
 import ListCarousel from './generic/list_carousel'
 import OccupantPreview from './occupant_preview'
+import { forEach, map } from 'lodash'
+import { pluralize, nodesToSentence } from '../utilities'
+
+const Num = (props) => <Text style={styles.num}>{props.children}</Text>
 
 export default class OccupantsCard extends Component {
-  render() {
-    const Num = (props) => <Text style={styles.num}>{props.children}</Text>
+  static propTypes = {
+    occupants: PropTypes.array.isRequired
+  }
 
+  renderOccupantPreviews() {
+    return this.props.occupants.map((occupant) => {
+      return <OccupantPreview key={occupant.id} occupant={occupant} />
+    })
+  }
+
+  stateCounts() {
+    var result = {}
+    forEach(this.props.occupants, (occupant) => {
+        result[occupant.status] = result[occupant.status] || 0
+        result[occupant.status] += 1
+    })
+    return result
+  }
+
+  statusSummary(status, count) {
+    return <Text key={status}><Num>{count}</Num> {pluralize(status, count)}</Text>
+  }
+
+  statusSummaries() {
+    var totals = this.stateCounts()
+    var parts = map(totals, (value, key) => {
+      return this.statusSummary(key, value)
+    })
+    return nodesToSentence(parts)
+  }
+
+  summary() {
+    var totals = this.stateCounts()
+    return (
+      <Text>
+        There will be {this.statusSummaries()} during your stay
+      </Text>
+    )
+  }
+
+  render() {
     return (
       <FullWidthCard>
         <CardHeader>
-          <Text>
-            There will be <Num>12</Num> long-term residents and <Num>4</Num> guests during
-            your stay
-          </Text>
+          {this.summary()}
         </CardHeader>
         <ListCarousel>
-          <OccupantPreview id="1" name="Craig Ambrose" />
-          <OccupantPreview id="2" name="Tracey Ambrose" />
-          <OccupantPreview id="3" name="Jessy Schingler" />
-          <OccupantPreview id="4" name="Robbie Schingler" />
-          <OccupantPreview id="5" name="Anouk Ruhaak" />
-          <OccupantPreview id="6" name="Samy Andary" />
-          <OccupantPreview id="7" name="Daniel Gasperz" />
+          {this.renderOccupantPreviews()}
         </ListCarousel>
       </FullWidthCard>
     );
