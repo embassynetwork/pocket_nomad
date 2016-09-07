@@ -1,12 +1,16 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default class Header extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired
+  }
+
   render() {
     return (
       <View style={styles.header}>
-        <Text style={styles.locationName}>The Red Victorian</Text>
+        <Text style={styles.locationName}>{this.props.name}</Text>
       </View>
     );
   }

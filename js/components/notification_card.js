@@ -6,12 +6,16 @@ import { colors } from '../styles/typography'
 
 export default class NotificationCard extends Component {
   render() {
-    const imageUrl = "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"
+    const notification = {
+      id: 1,
+      imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"
+    }
+
     const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
     return (
       <Card style={styles.container}>
-        <Image style={styles.image} source={{uri: imageUrl}} />
+        <Image style={styles.image} source={{uri: notification.imageUrl}} />
         <View style={styles.details}>
           <Text>
             <B>Craig Ambrose</B>, <B>Tracey Ambrose</B> and <B>3 others</B> arrive today.

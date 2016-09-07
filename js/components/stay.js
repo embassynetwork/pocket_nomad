@@ -12,6 +12,10 @@ import ParallaxView from 'react-native-parallax-view'
 export default class Stay extends Component {
   render() {
     const stay = {
+      location: {
+        name: "The Red Victorian",
+        headerImageUrl: 'https://embassynetwork.com/media/locations/62b0bb14-3541-4505-af5e-9a5c4a74bc91.jpg'
+      },
       events: [
         {id: 1, name: "Bloom Network Launch", startTime: "Friday, 7pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
         {id: 2, name: "Silent Reading Salon", startTime: "Saturday, 6:30pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
@@ -36,28 +40,20 @@ export default class Stay extends Component {
 
     return (
       <ParallaxView
-          backgroundSource={{uri: 'https://embassynetwork.com/media/locations/62b0bb14-3541-4505-af5e-9a5c4a74bc91.jpg'}}
+          backgroundSource={{uri: stay.location.headerImageUrl}}
           windowHeight={250}
           header={(
-              <Header />
+              <Header name={stay.location.name} />
           )}
           scrollableViewStyle={styles.container}
       >
         <View>
-          <NotificationCard />
-          <NotificationCard />
-          <NotificationCard />
+          {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
           <Card><EventGroupPreview events={stay.events} /></Card>
           <OccupantsCard occupants={stay.occupants} />
           <Card><LocationDetails details={stay.locationDetails} /></Card>
         </View>
       </ParallaxView>
-
-      // <View style={styles.container}>
-      //   <Header />
-      //   <ScrollView style={styles.cardContainer}>
-      //   </ScrollView>
-      // </View>
     );
   }
 }
