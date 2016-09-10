@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import Stay from './stay'
+import Swiper from 'react-native-swiper'
 
-const stay = {
+const redvic = {
   location: {
     name: "The Red Victorian",
     headerImageUrl: 'https://embassynetwork.com/media/locations/62b0bb14-3541-4505-af5e-9a5c4a74bc91.jpg'
@@ -29,9 +30,45 @@ const stay = {
     {id: "wifi", icon: 'wifi', text: "Network: Red Vic\nPassword: modernomad"}
   ]
 }
+const stays = [
+  redvic
+]
 
 export default class Stays extends Component {
   render() {
-    return <Stay stay={stay} />
+    return (
+      <View style={styles.container}>
+        <Stay stay={stays[0]} />
+      </View>
+    )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  headerBar: {
+    backgroundColor: '#880000',
+    height: 60,
+    paddingTop: 20,
+    zIndex: 2,
+  },
+  swipePage: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  tab: {
+    width: 100,
+    height: 40,
+    justifyContent: 'center',
+  },
+  tabText: {
+    fontSize: 25,
+    justifyContent: 'center',
+    textAlign: 'center',
+    lineHeight: 25,
+    flexDirection: 'column',
+    color: '#FFFFFF'
+  },
+});
