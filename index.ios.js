@@ -6,11 +6,11 @@
 
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import Stays from './js/components/stays/stays'
+import App from './js/components/app'
 
 class PocketNomad extends Component {
   render() {
-    return <Stays />
+    return <App />
   }
 }
 
