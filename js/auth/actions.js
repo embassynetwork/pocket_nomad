@@ -6,7 +6,7 @@ import { checkHttpStatus, parseJSON } from './utils';
 import jwtDecode from 'jwt-decode';
 import {LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE} from './constants'
 
-import {replaceRoute} from '../actions/route';
+// import {replaceRoute} from '../actions/route';
 
 export function loginUserRequest() {
   return {
@@ -55,7 +55,7 @@ export function loginUser(email, password, redirect="/") {
                 try {
                     let decoded = jwtDecode(response.token);
                     dispatch(loginUserSuccess(response.token, decoded));
-                    dispatch(replaceRoute("home"));
+                    // dispatch(replaceRoute("home"));
                 } catch (e) {
                     dispatch(loginUserFailure({
                         response: {

@@ -1,11 +1,25 @@
 // @flow
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
+import {connect} from 'react-redux';
+import {loginUser} from '../actions';
 
 import TextField from 'react-native-md-textinput'
 import Button from 'react-native-material-button'
 
-export default class Login extends Component {
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
+  submitLogin() {
+    this.props.loginUser(this.state.email, this.state.password)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -14,9 +28,23 @@ export default class Login extends Component {
             <Text style={styles.headerText}>a global housing layer for the new world</Text>
           </View>
           <View style={styles.form}>
-            <TextField label={'Name'} highlightColor={'#ecf0f1'} />
-            <TextField label={'Password'} highlightColor={'#ecf0f1'} />
-            <Button withShadow={true} withRipple={true} rippleColor='rgba(22, 160, 133, 0.5)' onPress={()=>{alert('pressed!')}} style={styles.submitButton}>
+            <TextField
+              label={'Email'}
+              highlightColor={buttonHighlight}
+              value={this.state.email}
+              onChangeText={(email) => this.setState({email})} />
+            <TextField
+              label={'Password'}
+              highlightColor={buttonHighlight}
+              secureTextEntry={true}
+              value={this.state.password}
+              onChangeText={(password) => this.setState({password})} />
+            <Button
+              withShadow={true}
+              withRipple={true}
+              rippleColor='rgba(22, 160, 133, 0.5)'
+              onPressOut={this.submitLogin.bind(this)}
+              style={styles.submitButton}>
               <Text style={styles.submitButtonText}>LOGIN</Text>
             </Button>
           </View>
@@ -26,6 +54,7 @@ export default class Login extends Component {
   }
 }
 
+const buttonHighlight = '#ecf0f1'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -63,3 +92,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
   }
 });
+
+const mapStateToProps = (state) => (
+  // {
+  //   isAuthenticating   : state.auth.isAuthenticating,
+  //   statusText         : state.auth.statusText
+  // }
+  {}
+);
+
+function bindActions(dispatch){
+  return {
+    loginUser:(email, password)=>dispatch(loginUser(email, password))
+  }
+}
+
+export default connect(mapStateToProps, bindActions)(Login);
