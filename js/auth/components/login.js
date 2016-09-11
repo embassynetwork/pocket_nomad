@@ -1,8 +1,9 @@
 // @flow
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { Component } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 
-import TextField from 'react-native-md-textinput';
+import TextField from 'react-native-md-textinput'
+import Button from 'react-native-material-button'
 
 export default class Login extends Component {
   render() {
@@ -12,8 +13,13 @@ export default class Login extends Component {
           <View style={styles.header}>
             <Text style={styles.headerText}>a global housing layer for the new world</Text>
           </View>
-          <TextField label={'Name'} highlightColor={'#ecf0f1'} />
-          <TextField label={'Password'} highlightColor={'#ecf0f1'} />
+          <View style={styles.form}>
+            <TextField label={'Name'} highlightColor={'#ecf0f1'} />
+            <TextField label={'Password'} highlightColor={'#ecf0f1'} />
+            <Button withShadow={true} withRipple={true} rippleColor='rgba(22, 160, 133, 0.5)' onPress={()=>{alert('pressed!')}} style={styles.submitButton}>
+              <Text style={styles.submitButtonText}>LOGIN</Text>
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -29,15 +35,31 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   header: {
     height: 200,
-    // borderWidth: 1,
+  },
+  form: {
+    marginBottom: 36,
   },
   headerText: {
     color: '#FFFFFF',
     fontSize: 40,
     textAlign: 'center',
+  },
+  submitButton: {
+    backgroundColor: '#ecf0f1',
+    height: 36,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 36,
+  },
+  submitButtonText: {
+    fontWeight: 'bold',
+    fontSize: 14,
   }
 });
