@@ -9,7 +9,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://localhost:8000'),
+  networkInterface: createNetworkInterface('http://localhost:8000/graphql'),
 });
 
 const redvic = {
