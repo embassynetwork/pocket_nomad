@@ -6,6 +6,7 @@ import {loginUser} from '../actions';
 
 import TextField from 'react-native-md-textinput'
 import Button from 'react-native-material-button'
+import { MKTextField } from 'react-native-material-kit'
 
 class Login extends Component {
   constructor(props) {
@@ -16,11 +17,16 @@ class Login extends Component {
     };
   }
 
+  focusNextField(nextField) {
+    this.refs[nextField].focus()
+  }
+
   submitLogin() {
     this.props.loginUser(this.state.email, this.state.password)
   }
 
   render() {
+
     return (
       <View style={styles.container}>
         <View style={styles.body}>
@@ -28,13 +34,18 @@ class Login extends Component {
             <Text style={styles.headerText}>a global housing layer for the new world</Text>
           </View>
           <View style={styles.form}>
-            <TextField
-              label={'Email'}
-              highlightColor={buttonHighlight}
+            <TextfieldWithFloatingLabel
+              ref="1"
+              placeholder="Email"
+              keyboardType="email-address"
               value={this.state.email}
-              onChangeText={(email) => this.setState({email})} />
-            <TextField
-              label={'Password'}
+              onChangeText={(email) => this.setState({email})}
+              onSubmitEditing={() => this.focusNextField('2')}
+              returnKeyType="next"
+               />
+            <TextfieldWithFloatingLabel
+              ref="2"
+              placeholder='Password'
               highlightColor={buttonHighlight}
               secureTextEntry={true}
               value={this.state.password}
@@ -90,8 +101,25 @@ const styles = StyleSheet.create({
   submitButtonText: {
     fontWeight: 'bold',
     fontSize: 14,
-  }
+  },
+  textfield: {
+    height: 28,  // have to do it on iOS
+    marginTop: 32,
+  },
+  textfieldWithFloatingLabel: {
+    height: 48,  // have to do it on iOS
+    marginTop: 10,
+  },
 });
+
+const TextfieldWithFloatingLabel = MKTextField.textfield()
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withFloatingLabelFont({
+    fontSize: 10,
+    fontStyle: 'italic',
+    fontWeight: '200',
+  })
+  .build();
 
 const mapStateToProps = (state) => (
   // {
