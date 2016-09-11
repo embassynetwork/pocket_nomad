@@ -122,11 +122,10 @@ const TextfieldWithFloatingLabel = MKTextField.textfield()
   .build();
 
 const mapStateToProps = (state) => (
-  // {
-  //   isAuthenticating   : state.auth.isAuthenticating,
-  //   statusText         : state.auth.statusText
-  // }
-  {}
+  {
+    isAuthenticating   : state.auth.isAuthenticating,
+    statusText         : state.auth.statusText
+  }
 );
 
 function bindActions(dispatch){
