@@ -11,6 +11,7 @@ import ParallaxView from 'react-native-parallax-view'
 
 export default class Stay extends Component {
   render() {
+    console.log('stay props', this.props)
     const stay = this.props.stay
 
     return (

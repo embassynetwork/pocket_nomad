@@ -6,9 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "apollo-client": "^0.4.14",
+    "graphql-tag": "^0.1.13",
     "jwt-decode": "^2.1.0",
     "lodash": "^4.15.0",
     "react": "15.3.1",
+    "react-apollo": "^0.5.4",
     "react-native": "0.33.0",
     "react-native-material-button": "github:damusnet/react-native-material-button",
     "react-native-material-kit": "github:xinthink/react-native-material-kit",

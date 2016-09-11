@@ -1,8 +1,16 @@
 // @flow
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
 import Stay from './stay'
-import Swiper from 'react-native-swiper'
+
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface('http://localhost:8000'),
+});
 
 const redvic = {
   location: {
@@ -34,41 +42,35 @@ const stays = [
   redvic
 ]
 
+const MyQuery = gql`
+  {
+    myReservations(first: 15, orderBy: "arrive") {
+      edges {
+        node {
+          uuid
+          created
+          purpose
+          comments
+          arrive
+          location {
+            id,
+            slug,
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
 export default class Stays extends Component {
   render() {
+    const StayWithData = graphql(MyQuery)(Stay);
+
     return (
-      <View style={styles.container}>
-        <Stay stay={stays[0]} />
-      </View>
+      <ApolloProvider client={client}>
+        <StayWithData stay={stays[0]} />
+      </ApolloProvider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  headerBar: {
-    backgroundColor: '#880000',
-    height: 60,
-    paddingTop: 20,
-    zIndex: 2,
-  },
-  swipePage: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  tab: {
-    width: 100,
-    height: 40,
-    justifyContent: 'center',
-  },
-  tabText: {
-    fontSize: 25,
-    justifyContent: 'center',
-    textAlign: 'center',
-    lineHeight: 25,
-    flexDirection: 'column',
-    color: '#FFFFFF'
-  },
-});
