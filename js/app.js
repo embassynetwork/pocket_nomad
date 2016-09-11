@@ -6,17 +6,22 @@ import thunk from 'redux-thunk';
 import Main from './components/main'
 import reducer from './reducers'
 import devTools from 'remote-redux-devtools';
+import {autoRehydrate, persistStore} from 'redux-persist'
+import {AsyncStorage} from 'react-native'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 function configureStore() {
   const enhancer = compose(
     applyMiddleware(thunk),
+    autoRehydrate(),
     devTools()
   );
 
   // Note: passing enhancer as last argument requires redux@>=3.1.0
   const store = createStore(reducer, enhancer);
+  persistStore(store, {storage: AsyncStorage});
+
   // If you have other enhancers & middlewares
   // update the store after creating / changing to allow devTools to use them
   devTools.updateStore(store);
