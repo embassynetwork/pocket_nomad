@@ -14,20 +14,25 @@ export default class Stay extends Component {
     console.log('stay props', this.props)
     const stay = this.props.stay
 
-    return (
-      <ParallaxView
-          backgroundSource={{uri: stay.location.headerImageUrl}}
-          windowHeight={250}
-          header={<Header name={stay.location.name} />}
-          scrollableViewStyle={styles.container} >
-        <View>
-          {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
-          <Card><EventGroupPreview events={stay.events} /></Card>
-          <OccupantsCard occupants={stay.occupants} />
-          <Card><LocationDetails details={stay.locationDetails} /></Card>
-        </View>
-      </ParallaxView>
-    );
+    if (stay) {
+      return (
+        <ParallaxView
+            backgroundSource={{uri: stay.location.headerImageUrl}}
+            windowHeight={250}
+            header={<Header name={stay.location.name} />}
+            scrollableViewStyle={styles.container} >
+          <View>
+            {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
+            {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
+            {stay.occupants && <OccupantsCard occupants={stay.occupants} />}
+            {stay.locationDetails && <Card><LocationDetails details={stay.locationDetails} /></Card>}
+          </View>
+        </ParallaxView>
+      );
+
+    } else {
+      return <View></View>
+    }
   }
 }
 

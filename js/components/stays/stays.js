@@ -1,11 +1,11 @@
 // @flow
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Stay from './stay'
+import _ from 'lodash'
 
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import WithApollo from '../../apollo'
 
 const redvic = {
   location: {
@@ -37,7 +37,7 @@ const stays = [
   redvic
 ]
 
-const MyQuery = gql`
+const MyReservationsQuery = gql`
   {
     myReservations(first: 15, orderBy: "arrive") {
       edges {
@@ -58,14 +58,25 @@ const MyQuery = gql`
   }
 `;
 
-export default class Stays extends Component {
+class Stays extends Component {
   render() {
-    const StayWithData = graphql(MyQuery)(Stay);
-
-    return (
-      <WithApollo>
-        <StayWithData stay={stays[0]} />
-      </WithApollo>
-    )
+    console.log('rendering stays with props', this.props)
+    if (this.props.stays) {
+      return <Stay stay={this.props.stays[0]} />
+    } else {
+      return <View><Text>no data</Text></View>
+    }
   }
 }
+
+
+
+const StaysWithData = graphql(MyReservationsQuery, {
+  // ownProps are the props that are passed into the `ProfileWithData`
+  // when it is used by a parent component
+  props: ({ ownProps, data: { myReservations } }) => ({
+    stays: (myReservations ? _.map(myReservations.edges, 'node') : null),
+  }),
+})(Stays);
+
+export default StaysWithData
