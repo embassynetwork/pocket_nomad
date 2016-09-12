@@ -38,6 +38,7 @@ class Login extends Component {
               ref="1"
               placeholder="Email"
               keyboardType="email-address"
+              highlightColor={buttonHighlight}
               value={this.state.email}
               onChangeText={(email) => this.setState({email})}
               onSubmitEditing={() => this.focusNextField('2')}

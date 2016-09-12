@@ -1,10 +1,8 @@
 // @flow
-
-'use strict';
-import type {Action} from './types';
-import { checkHttpStatus, parseJSON } from './utils';
-import jwtDecode from 'jwt-decode';
+import { checkHttpStatus, parseJSON } from './utils'
+import jwtDecode from 'jwt-decode'
 import {LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE} from './constants'
+import config from '../config'
 
 // import {replaceRoute} from '../actions/route';
 
@@ -35,7 +33,7 @@ export function loginUserFailure(error) {
   }
 }
 
-const loginEndpointURL = "https://embassynetwork.com/api-token-auth/"
+const loginEndpointURL = config.loginEndpointURL
 
 export function loginUser(email, password, redirect="/") {
     return function(dispatch) {
