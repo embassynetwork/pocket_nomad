@@ -3,14 +3,9 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import Stay from './stay'
 
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import { ApolloProvider } from 'react-apollo'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://localhost:8000/graphql'),
-});
+import WithApollo from '../../apollo'
 
 const redvic = {
   location: {
@@ -68,9 +63,9 @@ export default class Stays extends Component {
     const StayWithData = graphql(MyQuery)(Stay);
 
     return (
-      <ApolloProvider client={client}>
+      <WithApollo>
         <StayWithData stay={stays[0]} />
-      </ApolloProvider>
+      </WithApollo>
     )
   }
 }
