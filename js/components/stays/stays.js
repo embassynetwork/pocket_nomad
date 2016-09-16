@@ -62,7 +62,7 @@ class Stays extends Component {
   render() {
     console.log('rendering stays with props', this.props)
     if (this.props.stays) {
-      return <Stay stay={this.props.stays[0]} />
+      return <Stay stay={redvic} />
     } else {
       return <View><Text>no data</Text></View>
     }
