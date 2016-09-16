@@ -6,6 +6,7 @@ import _ from 'lodash'
 
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 const redvic = {
   location: {
@@ -33,9 +34,9 @@ const redvic = {
     {id: "wifi", icon: 'wifi', text: "Network: Red Vic\nPassword: modernomad"}
   ]
 }
-const stays = [
-  redvic
-]
+// const stays = [
+//   redvic
+// ]
 
 const MyReservationsQuery = gql`
   {
@@ -62,9 +63,10 @@ class Stays extends Component {
   render() {
     console.log('rendering stays with props', this.props)
     if (this.props.stays) {
-      return <Stay stay={redvic} />
+      var stay = {...redvic, ...(this.props.stays[0] || {})}
+      return <Stay stay={stay} />
     } else {
-      return <View><Text>no data</Text></View>
+      return <View><Spinner visible={true} /></View>
     }
   }
 }

@@ -2,10 +2,11 @@
 import React, { Component,PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {connect} from 'react-redux';
 
 const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
-export default class Header extends Component {
+class StayHeader extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired
   }
@@ -14,8 +15,8 @@ export default class Header extends Component {
     return (
       <View style={styles.header}>
         <View style={styles.welcomeContainer}>
-          <Text style={styles.hello}>Hi, Juliana.</Text>
-          <Text style={styles.youreAt}>{"you're"} at <B>The Red Victorian</B></Text>
+          <Text style={styles.hello}>Hi, {this.props.userName}.</Text>
+          <Text style={styles.youreAt}>{"you're"} at <B>{this.props.name}</B></Text>
           <Text style={styles.youreAt}>for 2 more days</Text>
         </View>
         <View style={styles.nextLinkContainer}>
@@ -31,7 +32,16 @@ export default class Header extends Component {
     );
   }
 }
-// <Text style={styles.locationName}>{this.props.name}</Text>
+
+const mapStateToProps = (state) => {
+  return {
+    userName : state.auth.userName
+  }
+};
+
+export default connect(mapStateToProps)(StayHeader);
+
+// export default StayHeader
 
 const styles = StyleSheet.create({
   header: {

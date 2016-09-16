@@ -3,22 +3,26 @@
 
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import Main from './components/main'
-import reducer from './reducers'
+import reducersWithApollo from './reducers'
 import devTools from 'remote-redux-devtools';
-import {autoRehydrate, persistStore} from 'redux-persist'
-import {AsyncStorage} from 'react-native'
+import { autoRehydrate, persistStore } from 'redux-persist'
+import { AsyncStorage } from 'react-native'
+import apollo from './apollo_connection'
+import WithApollo from './with_apollo'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 function configureStore() {
   const enhancer = compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, apollo.middleware()),
     autoRehydrate(),
     devTools()
   );
+
+  const reducer = reducersWithApollo(apollo)
 
   // Note: passing enhancer as last argument requires redux@>=3.1.0
   const store = createStore(reducer, enhancer);
@@ -36,7 +40,9 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main />
+        <WithApollo store={store}>
+          <Main />
+        </WithApollo>
       </Provider>
     )
   }
