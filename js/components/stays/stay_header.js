@@ -2,9 +2,12 @@
 import React, { Component,PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import StayLink from './stay_link'
-import DurationText from './duration_text'
+import StayDescription from './stay_description'
+import moment from 'moment'
 
-const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
+function momentIfValid(dateString) {
+  return dateString ? moment(dateString) : null;
+}
 
 export default class StayHeader extends Component {
   static propTypes = {
@@ -26,12 +29,19 @@ export default class StayHeader extends Component {
       <View style={styles.header}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.hello}>Hi, {stay.user.firstName}.</Text>
-          <Text style={styles.youreAt}>{"you're"} at <B>{stay.location.name}</B></Text>
-          <DurationText style={styles.youreAt} arrive={stay.arrive} depart={stay.depart} timezone={stay.location.timezone} />
+          <StayDescription textStyle={styles.youreAt} locationName={stay.location.name} {...this.timeFields()} />
         </View>
         {this.props.nextStay && <StayLink {...this.props.nextStay} />}
       </View>
     );
+  }
+
+  timeFields() {
+    const stay = this.props.stay
+    return {
+      arrive: momentIfValid(stay.arrive),
+      depart: momentIfValid(stay.depart)
+    }
   }
 }
 
