@@ -33,8 +33,10 @@ class WithApollo extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  token : state.auth.token
-});
+const mapStateToProps = (state) => {
+  return {
+    token : state.auth.token
+  }
+};
 
 export default connect(mapStateToProps)(WithApollo);

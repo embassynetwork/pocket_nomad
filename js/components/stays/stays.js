@@ -48,6 +48,9 @@ const MyReservationsQuery = gql`
           purpose
           comments
           arrive
+          user {
+            firstName
+          }
           location {
             id,
             slug,
@@ -61,9 +64,9 @@ const MyReservationsQuery = gql`
 
 class Stays extends Component {
   render() {
-    console.log('rendering stays with props', this.props)
-    if (this.props.stays) {
-      var stay = {...redvic, ...(this.props.stays[0] || {})}
+    console.log("stays", this.props)
+    if (this.props.stays && this.props.stays.length > 0) {
+      var stay = {...(this.props.stays[0])}
       return <Stay stay={stay} />
     } else {
       return <View><Spinner visible={true} /></View>
@@ -71,14 +74,12 @@ class Stays extends Component {
   }
 }
 
-
-
-const StaysWithData = graphql(MyReservationsQuery, {
-  // ownProps are the props that are passed into the `ProfileWithData`
-  // when it is used by a parent component
+const StaysWithData = graphql(MyReservationsQuery
+  , {
   props: ({ ownProps, data: { myReservations } }) => ({
     stays: (myReservations ? _.map(myReservations.edges, 'node') : null),
   }),
-})(Stays);
+}
+)(Stays);
 
 export default StaysWithData

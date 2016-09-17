@@ -12,6 +12,7 @@ import { autoRehydrate, persistStore } from 'redux-persist'
 import { AsyncStorage } from 'react-native'
 import apollo from './apollo_connection'
 import WithApollo from './with_apollo'
+import WithAuth from './auth/components/with_auth'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -40,9 +41,11 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <WithApollo store={store}>
-          <Main />
-        </WithApollo>
+        <WithAuth>
+          <WithApollo store={store}>
+            <Main />
+          </WithApollo>
+        </WithAuth>
       </Provider>
     )
   }

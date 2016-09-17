@@ -19,7 +19,7 @@ export default class Stay extends Component {
         <ParallaxView
             backgroundSource={{uri: stay.location.headerImageUrl}}
             windowHeight={250}
-            header={<Header name={stay.location.name} />}
+            header={<Header name={stay.location.name} userName={stay.user.firstName} />}
             scrollableViewStyle={styles.container} >
           <View>
             {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}

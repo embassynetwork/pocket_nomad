@@ -6,9 +6,10 @@ import {connect} from 'react-redux';
 
 const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
-class StayHeader extends Component {
+export default class StayHeader extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired
   }
 
   render() {
@@ -32,16 +33,6 @@ class StayHeader extends Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    userName : state.auth.userName
-  }
-};
-
-export default connect(mapStateToProps)(StayHeader);
-
-// export default StayHeader
 
 const styles = StyleSheet.create({
   header: {
