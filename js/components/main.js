@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import Stays from './stays/stays'
+import StaysContainer from './stays/stays_container'
 
 export default class Main extends Component {
   render() {
-    return <Stays />
+    return <StaysContainer />
   }
 }
