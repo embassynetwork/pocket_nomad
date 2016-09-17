@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
 import Stay from './stay'
+import NoStay from './no_stay'
 
 export default class Stays extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ export default class Stays extends Component {
       var stay = {...(this.props.stays[0])}
       return <Stay stay={stay} />
     } else {
-      return <View><Text>No data</Text></View>
+      return <NoStay />
     }
   }
 }
