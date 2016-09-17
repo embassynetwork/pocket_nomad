@@ -10,7 +10,7 @@ import Stays from './stays'
 
 const MyReservationsQuery = gql`
   {
-    myReservations(first: 15, orderBy: "arrive") {
+    myReservations(last: 15, orderBy: "arrive") {
       edges {
         node {
           id
@@ -18,13 +18,15 @@ const MyReservationsQuery = gql`
           purpose
           comments
           arrive
+          depart
           user {
             firstName
           }
           location {
             id,
-            slug,
+            slug
             name
+            timezone
           }
         }
       }
