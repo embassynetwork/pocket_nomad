@@ -8,7 +8,6 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import App from './js/app'
 
-
 class PocketNomad extends Component {
   render() {
     return <App />

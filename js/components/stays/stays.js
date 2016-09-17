@@ -7,6 +7,7 @@ import _ from 'lodash'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { BuildDataHandler } from '../generic/data_handler'
 
 const redvic = {
   location: {
@@ -64,7 +65,6 @@ const MyReservationsQuery = gql`
 
 class Stays extends Component {
   render() {
-    console.log("stays", this.props)
     if (this.props.stays && this.props.stays.length > 0) {
       var stay = {...(this.props.stays[0])}
       return <Stay stay={stay} />
@@ -74,12 +74,11 @@ class Stays extends Component {
   }
 }
 
-const StaysWithData = graphql(MyReservationsQuery
-  , {
-  props: ({ ownProps, data: { myReservations } }) => ({
-    stays: (myReservations ? _.map(myReservations.edges, 'node') : null),
-  }),
-}
-)(Stays);
+const StaysDataHandler = BuildDataHandler((data) => {
+  const stays = _.map(data.myReservations.edges, 'node')
+  return <Stays stays={stays} />
+})
 
-export default StaysWithData
+const StaysWithQuery = graphql(MyReservationsQuery)(StaysDataHandler);
+
+export default StaysWithQuery
