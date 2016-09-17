@@ -43,7 +43,7 @@ const MyReservationsQuery = gql`
     myReservations(first: 15, orderBy: "arrive") {
       edges {
         node {
-          uuid
+          id
           created
           purpose
           comments
@@ -65,7 +65,7 @@ const MyReservationsQuery = gql`
 
 const StaysDataHandler = BuildDataHandler((data) => {
   const stays = _.map(data.myReservations.edges, 'node')
-  return <Stays stays={[]} />
+  return <Stays stays={stays} />
 })
 
 const StaysWithQuery = graphql(MyReservationsQuery)(StaysDataHandler);

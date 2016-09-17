@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 import Header from './stay_header'
 import Card from '../generic/card'
 import EventGroupPreview from './event_group_preview'
@@ -10,6 +10,11 @@ import OccupantsCard from './occupants_card'
 import ParallaxView from 'react-native-parallax-view'
 
 export default class Stay extends Component {
+  static propTypes = {
+    stay: PropTypes.object.isRequired,
+    nextStay: PropTypes.object
+  }
+
   render() {
     console.log('stay props', this.props)
     const stay = this.props.stay
@@ -19,9 +24,10 @@ export default class Stay extends Component {
         <ParallaxView
             backgroundSource={{uri: stay.location.headerImageUrl}}
             windowHeight={250}
-            header={<Header name={stay.location.name} userName={stay.user.firstName} />}
+            header={<Header name={stay.location.name} userName={stay.user.firstName} nextStay={this.props.nextStay} />}
             scrollableViewStyle={styles.container} >
           <View>
+            <Card><Text>{stay.purpose}</Text></Card>
             {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
             {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
             {stay.occupants && <OccupantsCard occupants={stay.occupants} />}
@@ -29,7 +35,6 @@ export default class Stay extends Component {
           </View>
         </ParallaxView>
       );
-
     } else {
       return <View></View>
     }
