@@ -18,6 +18,10 @@ const MyReservationsQuery = gql`
           purpose
           arrive
           depart
+          occupants {
+            id
+            name
+          }
           user {
             firstName
           }
