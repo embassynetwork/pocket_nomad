@@ -16,17 +16,15 @@ const MyReservationsQuery = gql`
           id
           created
           purpose
-          comments
           arrive
           depart
           user {
             firstName
           }
           location {
-            id,
-            slug
+            id
             name
-            timezone
+            image
           }
         }
       }

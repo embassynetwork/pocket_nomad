@@ -8,6 +8,7 @@ import LocationDetails from './location_details'
 import NotificationCard from './notification_card'
 import OccupantsCard from './occupants_card'
 import ParallaxView from 'react-native-parallax-view'
+import config from '../../config'
 
 
 export default class Stay extends Component {
@@ -18,10 +19,11 @@ export default class Stay extends Component {
 
   render() {
     const stay = this.props.stay
+    console.log('this.headerImageUrl()', this.headerImageUrl())
 
     return (
       <ParallaxView
-          backgroundSource={{uri: stay.location.headerImageUrl}}
+          backgroundSource={{uri: this.headerImageUrl()}}
           windowHeight={250}
           header={<StayHeader stay={stay} nextStay={this.props.nextStay} />}
           scrollableViewStyle={styles.container} >
@@ -34,6 +36,12 @@ export default class Stay extends Component {
         </View>
       </ParallaxView>
     );
+  }
+
+  headerImageUrl() {
+    if (this.props.stay.location.image) {
+      return config.imageHost + this.props.stay.location.image
+    }
   }
 }
 
