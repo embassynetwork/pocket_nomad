@@ -14,13 +14,15 @@ const MyReservationsQuery = gql`
       edges {
         node {
           id
-          created
-          purpose
           arrive
           depart
           occupants {
             id
             name
+            status
+            userprofile {
+              imageThumb
+            }
           }
           user {
             firstName

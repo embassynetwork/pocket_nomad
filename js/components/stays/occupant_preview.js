@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { colors } from '../../styles/typography'
 import { pluralize } from '../../utilities'
+import Avatar from '../generic/avatar'
 
 export default class OccupantPreviw extends Component {
   static propTypes = {
@@ -11,7 +12,9 @@ export default class OccupantPreviw extends Component {
       name: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       duration: PropTypes.number,
-      avatarUrl: PropTypes.string
+      userprofile: PropTypes.shape({
+        image: PropTypes.string
+      }).isRequired,
     }).isRequired
   }
 
@@ -34,7 +37,7 @@ export default class OccupantPreviw extends Component {
 
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={{uri: occupant.avatarUrl}} />
+        <Avatar url={occupant.userprofile.imageThumb} />
         <View style={styles.details}>
           <Text style={styles.name}>{occupant.name}</Text>
           <Text style={styles.description} ellipsizeMode="tail" numberOfLines={1}>
@@ -63,10 +66,4 @@ const styles = StyleSheet.create({
     color: colors.subtleText,
     fontSize: 15,
   },
-  image: {
-    width: 60,
-    height: 60,
-    backgroundColor: colors.cardBorder,
-    marginRight: 10,
-  }
 });

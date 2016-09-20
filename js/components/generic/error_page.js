@@ -1,7 +1,17 @@
 // @flow
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 export default function ErrorPage(props) {
-  return <View><Text>Error</Text></View>
+  console.log("error occured", props)
+  return <View style={styles.container}><Text>an error occured</Text></View>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#e74c3c',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
