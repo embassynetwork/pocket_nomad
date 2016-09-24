@@ -9,6 +9,7 @@ import ListCarousel from '../generic/list_carousel'
 import OccupantPreview from './occupant_preview'
 import { forEach, map } from 'lodash'
 import { pluralize, nodesToSentence } from '../../utilities'
+import moment from 'moment'
 
 const Num = (props) => <Text style={styles.num}>{props.children}</Text>
 
@@ -44,11 +45,17 @@ export default class OccupantsCard extends Component {
     return nodesToSentence(parts)
   }
 
+  stayFinished() {
+    const depart = this.props.yourDates.depart
+    return !depart || moment().isAfter(depart)
+  }
+
   summary() {
-    var totals = this.stateCounts()
+    const prefix = this.stayFinished() ? "There were" : "There will be"
+
     return (
       <Text>
-        There will be {this.statusSummaries()} during your stay
+        {prefix} {this.statusSummaries()} during your stay
       </Text>
     )
   }
