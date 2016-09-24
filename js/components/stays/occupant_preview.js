@@ -4,45 +4,39 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import { colors } from '../../styles/typography'
 import { pluralize } from '../../utilities'
 import Avatar from '../generic/avatar'
+import OccupantDescription from './occupant_description'
+import ExternalLink from '../generic/external_link'
+import config from '../../config'
 
 export default class OccupantPreviw extends Component {
   static propTypes = {
     occupant: PropTypes.shape({
       id: PropTypes.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      duration: PropTypes.number,
-      userprofile: PropTypes.shape({
-        image: PropTypes.string
+      user: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        userprofile: PropTypes.shape({
+          image: PropTypes.string
+        }).isRequired,
       }).isRequired,
+      type: PropTypes.string.isRequired,
     }).isRequired
-  }
-
-  description() {
-    const occupant = this.props.occupant
-
-    if (occupant.status == 'resident') {
-      return occupant.status
-    } else {
-      if (occupant.duration) {
-        return `${occupant.status} for ${occupant.duration} ${pluralize('day', occupant.duration)}`
-      } else {
-        return occupant.status
-      }
-    }
   }
 
   render() {
     const occupant = this.props.occupant
+    const user = occupant.user
+    const profileUrl = config.host + user.url
 
     return (
       <View style={styles.container}>
-        <Avatar url={occupant.userprofile.imageThumb} />
+        <ExternalLink url={profileUrl}>
+          <Avatar url={user.userprofile.imageThumb} />
+        </ExternalLink>
         <View style={styles.details}>
-          <Text style={styles.name}>{occupant.name}</Text>
-          <Text style={styles.description} ellipsizeMode="tail" numberOfLines={1}>
-            {this.description()}
-          </Text>
+          <ExternalLink url={profileUrl}>
+            <Text style={styles.name}>{user.name}</Text>
+          </ExternalLink>
+          <OccupantDescription arrive={occupant.arrive} depart={occupant.depart} type={occupant.type} />
         </View>
       </View>
     );

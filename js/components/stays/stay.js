@@ -30,7 +30,7 @@ export default class Stay extends Component {
         <View>
           {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
           {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
-          {stay.occupants && <OccupantsCard occupants={stay.occupants} />}
+          {stay.occupantsDuring && <OccupantsCard occupants={stay.occupantsDuring} />}
           {stay.locationDetails && <Card><LocationDetails details={stay.locationDetails} /></Card>}
         </View>
       </ParallaxView>

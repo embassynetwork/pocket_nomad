@@ -6,6 +6,7 @@ const host = "http://localhost:8000"
 const config = {
   loginEndpointURL: `${host}/api-token-auth/`,
   graphQLEndpointUrl: `${host}/graphql`,
+  host: host,
   imageHost: `https://embassynetwork.com/media/`
 }
 

@@ -8,42 +8,47 @@ import gql from 'graphql-tag'
 import { BuildDataHandler } from '../generic/data_handler'
 import Stays from './stays'
 
-const myBookingsQuery = gql`
-  {
-    myBookings(last: 15, orderBy: "arrive") {
-      edges {
-        node {
+const myOccupanciesQuery = gql`
+{
+  myOccupancies(last: 15, orderBy: "arrive") {
+    edges {
+      node {
+        id
+        arrive
+        depart
+        occupantsDuring {
           id
           arrive
           depart
-          occupants {
-            id
+          type
+          user {
             name
-            status
+            url
             userprofile {
               imageThumb
             }
           }
-          user {
-            firstName
-          }
-          location {
-            id
-            name
-            image
-          }
+        }
+        user {
+          firstName
+        }
+        location {
+          id
+          name
+          image
         }
       }
     }
   }
+}
 `;
 
 
 const StaysDataHandler = BuildDataHandler((data) => {
-  const stays = _.map(data.myBookings.edges, 'node')
+  const stays = _.map(data.myOccupancies.edges, 'node')
   return <Stays stays={stays} />
 })
 
-const StaysWithQuery = graphql(myBookingsQuery)(StaysDataHandler);
+const StaysWithQuery = graphql(myOccupanciesQuery)(StaysDataHandler);
 
 export default StaysWithQuery
