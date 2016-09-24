@@ -12,7 +12,7 @@ import momentPropTypes from 'react-moment-proptypes'
 
 export default class OccupantPreviw extends Component {
   static propTypes = {
-    clippedTime: momentPropTypes.momentObj.isRequired,
+    yourDates: PropTypes.object.isRequired,
     occupant: PropTypes.shape({
       id: PropTypes.isRequired,
       user: PropTypes.shape({
@@ -43,7 +43,7 @@ export default class OccupantPreviw extends Component {
           <ExternalLink url={profileUrl}>
             <Text style={styles.name}>{user.name}</Text>
           </ExternalLink>
-          <OccupantDescription {...dates} clippedTime={this.props.clippedTime} type={occupant.type} />
+          <OccupantDescription {...dates} yourDates={this.props.yourDates} type={occupant.type} />
         </View>
       </View>
     );
