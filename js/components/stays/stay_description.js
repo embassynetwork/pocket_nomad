@@ -17,7 +17,7 @@ const StayDescriptions = {
   },
 
   Present: (props) => {
-    const text = (props.depart ? `for ${props.depart.fromNow(true)}` : 'indefinately')
+    const text = (props.depart ? `for another ${props.depart.fromNow(true)}` : 'indefinately')
     return (
       <View>
         <Text style={props.textStyle}>you're at <B>{props.locationName}</B></Text>

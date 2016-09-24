@@ -10,7 +10,7 @@ import Stays from './stays'
 
 const myOccupanciesQuery = gql`
 {
-  myOccupancies(last: 5, orderBy: "arrive") {
+  myCurrentOccupancies(orderBy: "arrive") {
     edges {
       node {
         id
@@ -46,7 +46,7 @@ const myOccupanciesQuery = gql`
 
 
 const StaysDataHandler = BuildDataHandler((data) => {
-  const stays = _.map(data.myOccupancies.edges, 'node')
+  const stays = _.map(data.myCurrentOccupancies.edges, 'node')
   return <Stays stays={stays} />
 })
 
