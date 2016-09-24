@@ -7,9 +7,12 @@ import { timeClippedBy } from '../../utilities'
 export default class OccupantDescription extends Component {
   static propTypes = {
     style: PropTypes.object,
-    arrive: momentPropTypes.momentObj,
-    depart: momentPropTypes.momentObj,
-    type: PropTypes.string.isRequired,
+    occupant: PropTypes.shape({
+      arrive: momentPropTypes.momentObj,
+      depart: momentPropTypes.momentObj,
+      type: PropTypes.string.isRequired,
+    }).isRequired,
+    occurringNow: PropTypes.bool.isRequired,
     yourDates: PropTypes.shape({
       arrive: momentPropTypes.momentObj,
       depart: momentPropTypes.momentObj
@@ -17,8 +20,11 @@ export default class OccupantDescription extends Component {
   }
 
   description() {
-    const arrive = this.props.arrive
-    const depart = this.props.depart
+    if (!this.props.occurringNow) return null
+
+    const occupant = this.props.occupant
+    const arrive = occupant.arrive
+    const depart = occupant.depart
     const yourDates = this.props.yourDates
     const clippedTime = timeClippedBy(yourDates)
 
@@ -46,7 +52,7 @@ export default class OccupantDescription extends Component {
     return (
       <View>
         <Text style={this.props.style} ellipsizeMode="tail" numberOfLines={1}>
-          {this.props.type}
+          {this.props.occupant.type}
         </Text>
         <Text style={this.props.style} ellipsizeMode="tail" numberOfLines={1}>
           {this.description()}

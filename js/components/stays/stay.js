@@ -19,7 +19,6 @@ export default class Stay extends Component {
 
   render() {
     const stay = this.props.stay
-    console.log('this.headerImageUrl()', this.headerImageUrl())
     const dates = {
       arrive: momentIfValid(stay.arrive),
       depart: momentIfValid(stay.depart)
@@ -32,6 +31,7 @@ export default class Stay extends Component {
           header={<StayHeader stay={stay} nextStay={this.props.nextStay} />}
           scrollableViewStyle={styles.container} >
         <View>
+          <Card><Text>{stay.purpose}</Text></Card>
           {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
           {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
           {stay.occupantsDuring && <OccupantsCard occupants={stay.occupantsDuring} yourDates={dates} />}

@@ -26,8 +26,8 @@ export default class OccupantsCard extends Component {
   stateCounts() {
     var result = {}
     forEach(this.props.occupants, (occupant) => {
-        result[occupant.status] = result[occupant.status] || 0
-        result[occupant.status] += 1
+        result[occupant.type] = result[occupant.type] || 0
+        result[occupant.type] += 1
     })
     return result
   }

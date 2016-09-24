@@ -10,12 +10,13 @@ import Stays from './stays'
 
 const myOccupanciesQuery = gql`
 {
-  myOccupancies(last: 15, orderBy: "arrive") {
+  myOccupancies(last: 5, orderBy: "arrive") {
     edges {
       node {
         id
         arrive
         depart
+        purpose
         occupantsDuring {
           id
           arrive

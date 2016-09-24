@@ -35,3 +35,9 @@ export function timeClippedBy(dates) {
   }
   return result;
 }
+
+export function momentWithinNullableRange(currentMoment, dateRange) {
+  const withinArrive = !dateRange.arrive || currentMoment.isSameOrAfter(dateRange.arrive)
+  const withinDepart = !dateRange.depart || currentMoment.isSameOrBefore(dateRange.depart)
+  return withinArrive && withinDepart
+}
