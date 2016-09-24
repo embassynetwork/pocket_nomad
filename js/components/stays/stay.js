@@ -9,7 +9,7 @@ import NotificationCard from './notification_card'
 import OccupantsCard from './occupants_card'
 import ParallaxView from 'react-native-parallax-view'
 import config from '../../config'
-
+import { momentIfValid, timeClippedBy } from '../../utilities'
 
 export default class Stay extends Component {
   static propTypes = {
@@ -20,6 +20,11 @@ export default class Stay extends Component {
   render() {
     const stay = this.props.stay
     console.log('this.headerImageUrl()', this.headerImageUrl())
+    const dates = {
+      arrive: momentIfValid(stay.arrive),
+      depart: momentIfValid(stay.depart)
+    }
+    const clippedTime = timeClippedBy(dates)
 
     return (
       <ParallaxView
@@ -30,7 +35,7 @@ export default class Stay extends Component {
         <View>
           {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
           {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
-          {stay.occupantsDuring && <OccupantsCard occupants={stay.occupantsDuring} />}
+          {stay.occupantsDuring && <OccupantsCard occupants={stay.occupantsDuring} clippedTime={clippedTime} />}
           {stay.locationDetails && <Card><LocationDetails details={stay.locationDetails} /></Card>}
         </View>
       </ParallaxView>

@@ -19,7 +19,7 @@ export default class OccupantsCard extends Component {
 
   renderOccupantPreviews() {
     return this.props.occupants.map((occupant) => {
-      return <OccupantPreview key={occupant.id} occupant={occupant} />
+      return <OccupantPreview key={occupant.id} occupant={occupant} clippedTime={this.props.clippedTime} />
     })
   }
 

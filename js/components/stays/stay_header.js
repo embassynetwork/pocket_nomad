@@ -4,10 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import StayLink from './stay_link'
 import StayDescription from './stay_description'
 import moment from 'moment'
-
-function momentIfValid(dateString) {
-  return dateString ? moment(dateString) : null;
-}
+import { momentIfValid } from '../../utilities'
 
 export default class StayHeader extends Component {
   static propTypes = {
