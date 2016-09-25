@@ -1,5 +1,5 @@
 /**
- * PocketNomad for Android
+ * EmbassyNetwork for Android
  * https://github.com/facebook/react-native
  * @flow
  */
@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import App from './js/app'
 
-class PocketNomad extends Component {
+class EmbassyNetwork extends Component {
   render() {
     return <App />
   }
 }
 
-AppRegistry.registerComponent('PocketNomad', () => PocketNomad);
+AppRegistry.registerComponent('EmbassyNetwork', () => EmbassyNetwork);

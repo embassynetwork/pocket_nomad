@@ -1,4 +1,4 @@
-package com.pocketnomad;
+package com.embassynetwork;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -11,6 +11,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "PocketNomad";
+        return "EmbassyNetwork";
     }
 }

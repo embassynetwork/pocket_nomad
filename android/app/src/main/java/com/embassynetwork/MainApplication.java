@@ -1,4 +1,4 @@
-package com.pocketnomad;
+package com.embassynetwork;
 
 import android.app.Application;
 import android.util.Log;
