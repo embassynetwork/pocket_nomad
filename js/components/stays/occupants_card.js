@@ -5,6 +5,7 @@ import { colors, fonts } from '../../styles/typography'
 import FullWidthCard from '../generic/full_width_card'
 import CardHeader from '../generic/card_header'
 import CardPart from '../generic/card_part'
+import NoOccupants from './no_occupants'
 import ListCarousel from '../generic/list_carousel'
 import OccupantPreview from './occupant_preview'
 import { forEach, map } from 'lodash'
@@ -61,16 +62,20 @@ export default class OccupantsCard extends Component {
   }
 
   render() {
-    return (
-      <FullWidthCard>
-        <CardHeader>
-          {this.summary()}
-        </CardHeader>
-        <ListCarousel>
-          {this.renderOccupantPreviews()}
-        </ListCarousel>
-      </FullWidthCard>
-    );
+    if (this.props.occupants.length == 0) {
+      return <NoOccupants />
+    } else  {
+      return (
+        <FullWidthCard>
+          <CardHeader>
+            {this.summary()}
+          </CardHeader>
+          <ListCarousel>
+            {this.renderOccupantPreviews()}
+          </ListCarousel>
+        </FullWidthCard>
+      )
+    }
   }
 }
 
