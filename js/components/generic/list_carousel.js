@@ -37,15 +37,20 @@ export default class ListCarousel extends Component {
     })
   }
 
-  render() {
+  renderSwiper() {
     return (
       <Swiper style={styles.wrapper} showsButtons={false} height={(76 * 4) + 50}>
         {this.renderChildren()}
       </Swiper>
-      // <ListCarouselItemSet>
-      //   {this.renderChildren()}
-      // </ListCarouselItemSet>
     );
+  }
+
+  render() {
+    if (this.props.children.length > 4) {
+      return this.renderSwiper()
+    } else {
+      return this.renderChildPage(this.props.children)
+    }
   }
 }
 

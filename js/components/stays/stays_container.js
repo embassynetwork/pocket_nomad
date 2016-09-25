@@ -47,7 +47,7 @@ const myOccupanciesQuery = gql`
 
 const StaysDataHandler = BuildDataHandler((data) => {
   const stays = _.map(data.myCurrentOccupancies.edges, 'node')
-  return <Stays stays={stays} />
+  return <Stays stays={stays} style={{flex: 1}} />
 })
 
 const StaysWithQuery = graphql(myOccupanciesQuery)(StaysDataHandler);
