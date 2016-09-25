@@ -13,6 +13,7 @@ import { AsyncStorage } from 'react-native'
 import apollo from './apollo_connection'
 import WithApollo from './with_apollo'
 import WithAuth from './auth/components/with_auth'
+import codePush from "react-native-code-push";
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -37,7 +38,7 @@ function configureStore() {
 
 const store = configureStore()
 
-export default class App extends Component {
+class AppWithoutCodePush extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -50,3 +51,6 @@ export default class App extends Component {
     )
   }
 }
+
+var App = codePush(AppWithoutCodePush);
+export default App
