@@ -1,40 +1,12 @@
 // @flow
 import React, { Component, PropTypes } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Platform, View, Text, StyleSheet } from 'react-native'
 import Stay from './stay'
 import NoStay from './no_stay'
 import _ from 'lodash'
 import Swiper from 'react-native-swiper'
 
-// const redvic = {
-//   location: {
-//     name: "The Red Victorian",
-//     headerImageUrl: 'https://embassynetwork.com/media/locations/62b0bb14-3541-4505-af5e-9a5c4a74bc91.jpg'
-//   },
-//   events: [
-//     {id: 1, name: "Bloom Network Launch", startTime: "Friday, 7pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//     {id: 2, name: "Silent Reading Salon", startTime: "Saturday, 6:30pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//     {id: 3, name: "Lecture Series: Imminent Urbanism", startTime: "Tuesday 5th Sep, 7:30pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//   ],
-//   occupants: [
-//     {id: 1, name: "Craig Ambrose", status: "guest", duration: 60, avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 2, name: "Tracey Ambrose", status: "guest", duration: 60, avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 3, name: "William Ambrose", status: "guest", duration: 60, avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 4, name: "Jessy Shingler", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 5, name: "Robby Schingler", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 6, name: "Anouk Ruhaak", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 7, name: "Samy Andary", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 8, name: "Daniel Gasperz", status: "resident", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//     {id: 9, name: "Guesty McGuestalot", status: "guest", avatarUrl: "https://cdn-images-1.medium.com/fit/c/100/100/0*X-jM01LFRRvS8HDT.jpg"},
-//   ],
-//   locationDetails: [
-//     {id: "address", icon: 'location-on', text: "1665 Haight St, San Francisco\nCA 94117 USA"},
-//     {id: "wifi", icon: 'wifi', text: "Network: Red Vic\nPassword: modernomad"}
-//   ]
-// }
-
-
-export default class Stays extends Component {
+class StaysSwipeable extends Component {
   static propTypes = {
     stays: PropTypes.array.isRequired
   }
@@ -76,3 +48,94 @@ const styles = StyleSheet.create({
   },
 
 });
+
+
+class StaysAndoid extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {stayID: (props.stays[0] ? props.stays[0].id : null)}
+  }
+
+  goToStay(stay) {
+    this.setState({stayID: stay.id})
+  }
+
+  selectedStayIndex() {
+    const stays = this.props.stays
+
+    if (this.state.stayID) {
+      const indexForState = _.findIndex(stays, {'id': this.state.stayID})
+      return indexForState ? indexForState : this._initializeStayIndex();
+    } else {
+      return this._initializeStayIndex()
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    const stays = (props.stays || [])
+    var stayID = this.state.stayID
+
+    if (stayID) {
+      const stay = _.find(this.props.stays, {'id': stayID})
+      if (!stay) {
+        stayID = null
+      }
+    }
+
+    if (!stayID) {
+      stayID = stays[0] ? stays[0].id : null
+    }
+
+    if (stayID != this.state.stayID) {
+      this.setState({stayID: stayID})
+    }
+  }
+
+  _initializeStayIndex() {
+    const stays = this.props.stays
+    const firstStayId = (stays.length > 0) ? stays[0].id : null
+    this.setState({stayID: firstStayId})
+    return 0
+  }
+
+  currentStay() {
+    if (this.state.stayID) {
+      return _.find(this.props.stays, {'id': this.state.stayID})
+    }
+  }
+
+  render() {
+    stay = this.currentStay();
+    if (stay) {
+      return <Stay key={stay.id} stay={stay} previousStay={this._stayLink(this._previousStay(stay))} nextStay={this._stayLink(this._nextStay(stay))} />
+    } else {
+      return <View><Text>{"no stay selected, this shouldn't happen"}</Text></View>
+    }
+  }
+
+  _stayLink(stay) {
+    if (stay) {
+      return {stay: stay, goTo: () => { this.goToStay(stay)}}
+    }
+  }
+
+  _nextStay(stay) {
+    const index = _.indexOf(this.props.stays, stay)
+    return index >= 0 ? this.props.stays[index + 1] : null
+  }
+
+  _previousStay(stay) {
+    const index = _.indexOf(this.props.stays, stay)
+    return index >= 0 ? this.props.stays[index - 1] : null
+  }
+}
+
+function Stays(props) {
+  if (Platform.OS === 'android') {
+    return <StaysAndoid {...props} />
+  } else {
+    return <StaysSwipeable {...props} />
+  }
+}
+
+export default Stays

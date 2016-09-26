@@ -3,7 +3,7 @@ import React, { Component,PropTypes } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default class StayLink extends Component {
+export default class PreviousStayLink extends Component {
   static propTypes = {
     stay: PropTypes.object.isRequired,
     goTo: PropTypes.func.isRequired
@@ -15,23 +15,15 @@ export default class StayLink extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.nextLink} onPress={this.onPress.bind(this)}>
-        <View style={styles.nextLinkWords}>
-          <Text style={styles.nextHeader}>up next</Text>
-          <Text style={[styles.text, styles.nextStay]}>{this.props.stay.location.name}</Text>
-        </View>
-        <Icon style={styles.arrow} name="chevron-right" />
+      <TouchableOpacity style={styles.linkContainer} onPress={this.onPress.bind(this)}>
+        <Icon style={styles.arrow} name="chevron-left" />
       </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: '#FFFFFF',
-    fontSize: 20,
-  },
-  nextLink: {
+  linkContainer: {
     backgroundColor: 'rgba(255, 0, 0, 0.5)',
     marginTop: 15,
     flexDirection: 'row',
@@ -40,14 +32,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     paddingRight: 8,
     paddingLeft: 8,
-  },
-  nextLinkWords: {
-    flexDirection: 'column',
-  },
-  nextHeader: {
-    color: '#FFFFFF',
-  },
-  nextStay: {
+    alignSelf: 'flex-start'
   },
   arrow: {
     fontSize: 42,

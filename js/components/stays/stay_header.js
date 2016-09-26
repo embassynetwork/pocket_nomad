@@ -2,6 +2,7 @@
 import React, { Component,PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import StayLink from './stay_link'
+import PreviousStayLink from './previous_stay_link'
 import StayDescription from './stay_description'
 import moment from 'moment'
 import { momentIfValid } from '../../utilities'
@@ -19,6 +20,19 @@ export default class StayHeader extends Component {
     nextStay: PropTypes.object
   }
 
+  renderStayLinks() {
+    // {this.props.previousStay && <StayLink {...this.props.previousStay} />}
+    // {this.props.nextStay && <StayLink {...this.props.nextStay} />}
+    if (this.props.previousStay || this.props.nextStay) {
+      return (
+        <View style={styles.stayLinksContainer}>
+          {this.props.previousStay && <PreviousStayLink {...this.props.previousStay} />}
+          {this.props.nextStay && <StayLink {...this.props.nextStay} />}
+        </View>
+      )
+    }
+  }
+
   render() {
     const stay = this.props.stay
 
@@ -28,7 +42,7 @@ export default class StayHeader extends Component {
           <Text style={styles.hello}>Hi, {stay.user.firstName}.</Text>
           <StayDescription textStyle={styles.youreAt} locationName={stay.location.name} {...this.timeFields()} />
         </View>
-        {this.props.nextStay && <StayLink {...this.props.nextStay} />}
+        {this.renderStayLinks()}
       </View>
     );
   }
@@ -62,5 +76,9 @@ const styles = StyleSheet.create({
   youreAt: {
     color: '#FFFFFF',
     fontSize: 20,
+  },
+  stayLinksContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   },
 });
