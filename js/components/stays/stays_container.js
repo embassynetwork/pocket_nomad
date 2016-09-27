@@ -43,11 +43,21 @@ const myOccupanciesQuery = gql`
             }
           }
         }
+        upcomingEventsDuring {
+          id
+          title
+          image
+          start
+          end
+          where
+          url
+        }
         user {
           firstName
         }
         location {
           id
+          slug
           name
           image
         }

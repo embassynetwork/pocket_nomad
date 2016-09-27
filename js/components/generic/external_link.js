@@ -8,6 +8,6 @@ export default class ExternalLink extends Component {
   }
 
   render() {
-    return <TouchableOpacity onPress={this.onPress.bind(this)}>{this.props.children}</TouchableOpacity>
+    return <TouchableOpacity style={this.props.style} onPress={this.onPress.bind(this)}>{this.props.children}</TouchableOpacity>
   }
 }

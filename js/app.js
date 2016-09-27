@@ -53,4 +53,4 @@ class AppWithoutCodePush extends Component {
 }
 
 var App = codePush(AppWithoutCodePush);
-export default App
+export default AppWithoutCodePush

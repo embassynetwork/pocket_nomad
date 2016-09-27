@@ -2,15 +2,16 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { colors } from '../../styles/typography'
+import ExternalLink from './external_link'
 
 export default class CardButtonFooter extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ExternalLink style={styles.container} url={this.props.url}>
         <Text style={styles.text}>
           {this.props.children}
         </Text>
-      </View>
+      </ExternalLink>
     );
   }
 }

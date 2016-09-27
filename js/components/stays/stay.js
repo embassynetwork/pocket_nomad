@@ -19,6 +19,7 @@ export default class Stay extends Component {
 
   render() {
     const stay = this.props.stay
+    const seeAllLink = `${config.host}/locations/${stay.location.slug}/events/upcoming/`
     const dates = {
       arrive: momentIfValid(stay.arrive),
       depart: momentIfValid(stay.depart)
@@ -32,7 +33,7 @@ export default class Stay extends Component {
           scrollableViewStyle={styles.container} >
         <View>
           {/*<NotificationCard /><NotificationCard /><NotificationCard />*/}
-          {stay.events && <Card><EventGroupPreview events={stay.events} /></Card>}
+          {stay.upcomingEventsDuring && <EventGroupPreview events={stay.upcomingEventsDuring} seeAllLink={seeAllLink} />}
           {stay.occupantsDuring && <OccupantsCard occupants={stay.occupantsDuring} yourDates={dates} />}
           {stay.locationDetails && <Card><LocationDetails details={stay.locationDetails} /></Card>}
         </View>
