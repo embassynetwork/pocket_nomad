@@ -6,31 +6,31 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "apollo-client": "^0.4.14",
-    "graphql-tag": "^0.1.13",
+    "apollo-client": "^0.4.21",
+    "graphql-tag": "^0.1.14",
     "jwt-decode": "^2.1.0",
-    "lodash": "^4.15.0",
-    "moment": "^2.15.0",
+    "lodash": "^4.16.4",
+    "moment": "^2.15.1",
     "react": "15.3.2",
-    "react-apollo": "^0.5.4",
+    "react-apollo": "^0.5.10",
     "react-moment-proptypes": "^1.2.0",
-    "react-native": "0.34.0",
-    "react-native-code-push": "^1.14.6-beta",
+    "react-native": "0.35.0",
+    "react-native-code-push": "^1.15.0-beta",
     "react-native-link": "github:exponentjs/react-native-link",
     "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-material-button": "github:damusnet/react-native-material-button",
     "react-native-material-kit": "github:xinthink/react-native-material-kit",
     "react-native-md-textinput": "^2.0.4",
-    "react-native-parallax-view": "^2.0.5",
-    "react-native-swiper": "^1.4.11",
+    "react-native-parallax-view": "^2.0.6",
+    "react-native-swiper": "^1.5.1",
     "react-native-url-handler": "github:exponentjs/react-native-url-handler",
     "react-native-vector-icons": "^2.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "redux-persist": "^4.0.0-alpha5",
+    "redux-persist": "^4.0.0-alpha6",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "remote-redux-devtools": "^0.4.8"
+    "remote-redux-devtools": "^0.5.0"
   }
 }
