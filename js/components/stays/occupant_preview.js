@@ -47,7 +47,7 @@ export default class OccupantPreviw extends Component {
     var containerStyles = [styles.container]
     if (occurringNow && this.occupantNotCurrent(dates)) containerStyles.push(styles.notCurrent)
 
-    const goToProfile = () => Actions.userProfile({text: 'Hello World!'});
+    const goToProfile = () => Actions.userProfile({user: user, title: user.name});
 
     return (
       <View style={[containerStyles]}>

@@ -8,18 +8,6 @@ import gql from 'graphql-tag'
 import { BuildDataHandler } from '../generic/data_handler'
 import Stays from './stays'
 
-// const redvic = {
-//   events: [
-//     {id: 1, name: "Bloom Network Launch", startTime: "Friday, 7pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//     {id: 2, name: "Silent Reading Salon", startTime: "Saturday, 6:30pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//     {id: 3, name: "Lecture Series: Imminent Urbanism", startTime: "Tuesday 5th Sep, 7:30pm", imageUrl: "https://embassynetwork.com/media/events/886e13aa-ab77-42c2-9c55-1cb2138bcb72.jpg"},
-//   ],
-//   locationDetails: [
-//     {id: "address", icon: 'location-on', text: "1665 Haight St, San Francisco\nCA 94117 USA"},
-//     {id: "wifi", icon: 'wifi', text: "Network: Red Vic\nPassword: modernomad"}
-//   ]
-// }
-
 
 const myOccupanciesQuery = gql`
 {
@@ -36,6 +24,7 @@ const myOccupanciesQuery = gql`
           depart
           type
           user {
+            id
             name
             url
             userprofile {
