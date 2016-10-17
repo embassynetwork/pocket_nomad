@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { colors } from '../../styles/typography'
 import { pluralize } from '../../utilities'
 import Avatar from '../generic/avatar'
@@ -10,6 +10,7 @@ import config from '../../config'
 import { momentIfValid, timeClippedBy, momentWithinNullableRange } from '../../utilities'
 import momentPropTypes from 'react-moment-proptypes'
 import moment from 'moment'
+import { Actions } from 'react-native-router-flux';
 
 export default class OccupantPreviw extends Component {
   static propTypes = {
@@ -46,15 +47,15 @@ export default class OccupantPreviw extends Component {
     var containerStyles = [styles.container]
     if (occurringNow && this.occupantNotCurrent(dates)) containerStyles.push(styles.notCurrent)
 
+    const goToProfile = () => Actions.userProfile({text: 'Hello World!'});
+
     return (
       <View style={[containerStyles]}>
-        <ExternalLink url={profileUrl}>
+        <TouchableOpacity onPress={goToProfile}>
           <Avatar url={user.userprofile.imageThumb} />
-        </ExternalLink>
+        </TouchableOpacity>
         <View style={styles.details}>
-          <ExternalLink url={profileUrl}>
-            <Text style={styles.name}>{user.name}</Text>
-          </ExternalLink>
+          <Text onPress={goToProfile} style={styles.name}>{user.name}</Text>
           <OccupantDescription occupant={{...dates, type: occupant.type}} occurringNow={occurringNow} yourDates={this.props.yourDates} />
         </View>
       </View>

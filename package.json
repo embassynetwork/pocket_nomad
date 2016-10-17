@@ -22,6 +22,7 @@
     "react-native-material-kit": "github:xinthink/react-native-material-kit",
     "react-native-md-textinput": "^2.0.4",
     "react-native-parallax-view": "^2.0.6",
+    "react-native-router-flux": "^3.36.0",
     "react-native-swiper": "^1.5.1",
     "react-native-url-handler": "github:exponentjs/react-native-url-handler",
     "react-native-vector-icons": "^2.1.0",
