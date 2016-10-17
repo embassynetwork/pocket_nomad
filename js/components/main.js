@@ -20,10 +20,6 @@ export default class Main extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E9EBEE',
-  },
   navBar: {
     backgroundColor: '#c0392b'
   },

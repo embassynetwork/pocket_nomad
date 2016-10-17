@@ -10,6 +10,7 @@ import OccupantsCard from './occupants_card'
 import ParallaxView from 'react-native-parallax-view'
 import config from '../../config'
 import { momentIfValid } from '../../utilities'
+import { colors } from '../../styles/typography'
 
 export default class Stay extends Component {
   static propTypes = {
@@ -53,6 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     paddingBottom: 50,
-    backgroundColor: '#E9EBEE',
+    backgroundColor: colors.greyBackground,
   }
 });
