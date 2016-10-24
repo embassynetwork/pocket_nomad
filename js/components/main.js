@@ -9,19 +9,21 @@ export default class Main extends Component {
   render() {
     return (
       <Router>
-        <Scene key="root" navigationBarStyle={styles.navBar} titleStyle={styles.titleStyle}>
+        <Scene key="root" navigationBarStyle={styles.navBar} barButtonIconStyle={styles.barIconStyle} titleStyle={styles.titleStyle}>
           <Scene key="stays" component={StaysContainer} title="Stays" hideNavBar={true} initial={true} />
           <Scene key="userProfile" component={UserProfileContainer} title="userProfile" hideNavBar={false} />
         </Scene>
       </Router>
     )
-    // return <StaysContainer style={styles.container} />
   }
 }
 
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: '#c0392b'
+  },
+  barIconStyle: {
+    tintColor: 'white'
   },
   titleStyle: {
     color: "#FFFFFF"

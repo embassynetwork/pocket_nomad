@@ -14,6 +14,10 @@ query userForId($userId: ID!) {
         email
         userprofile {
           image
+          bio
+          projects
+          sharing
+          discussion
         }
       }
     }

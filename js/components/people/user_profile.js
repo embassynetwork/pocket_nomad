@@ -4,6 +4,18 @@ import { StyleSheet, ScrollView, View, Text, Image } from 'react-native'
 import config from '../../config'
 import { colors } from '../../styles/typography'
 
+
+function SubSection(props) {
+  if (!props.text) return null
+
+  return (
+    <View style={styles.subSection}>
+      <Text style={styles.subHeading}>{props.title}</Text>
+      <Text>{props.text}</Text>
+    </View>
+  )
+}
+
 export default class UserProfile extends Component {
   render() {
     const user = this.props.user
@@ -14,10 +26,12 @@ export default class UserProfile extends Component {
         <Image style={styles.image} source={{uri: uri}} resizeMode="cover" />
         <View style={styles.header}>
           <Text style={styles.userName}>{user.name}</Text>
-          <Text>some profile details go here</Text>
+            <Text>{user.userprofile.bio}</Text>
         </View>
         <View style={styles.nextBit}>
-          <Text>some other details go here</Text>
+          <SubSection title="Projects" text={user.userprofile.projects} />
+          <SubSection title="Learning/Sharing Interests" text={user.userprofile.sharing} />
+          <SubSection title="Discussion topics" text={user.userprofile.discussion} />
         </View>
       </ScrollView>
     )
@@ -26,9 +40,9 @@ export default class UserProfile extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
     flex: 1,
-    backgroundColor: colors.greyBackground
+    backgroundColor: colors.greyBackground,
+    marginTop: 50
   },
   image: {
     backgroundColor: '#999999',
@@ -39,10 +53,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   userName: {
-    fontSize: 24
+    fontSize: 24,
+    marginBottom: 10
   },
   nextBit: {
     padding: 20,
-    backgroundColor: colors.greyBackground
+    backgroundColor: colors.greyBackground,
+    paddingBottom: 30
+  },
+  subHeading: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5
+  },
+  subSection: {
+    marginBottom: 15
   }
 });
